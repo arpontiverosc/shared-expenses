@@ -7,8 +7,10 @@ import lombok.*;
 @Setter
 @Getter
 @ToString
-public class CreateUserResponse {
-
+public class UserDetailResponse {
     private String id;
-
+    private String userName;
+    private String firstName;
+    private String lastName;
+    private String email;
 }

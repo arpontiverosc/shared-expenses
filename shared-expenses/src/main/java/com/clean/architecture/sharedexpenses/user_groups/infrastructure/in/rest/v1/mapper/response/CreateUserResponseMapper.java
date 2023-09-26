@@ -2,9 +2,12 @@ package com.clean.architecture.sharedexpenses.user_groups.infrastructure.in.rest
 
 import com.clean.architecture.sharedexpenses.user_groups.domain.model.User;
 import com.clean.architecture.sharedexpenses.user_groups.infrastructure.in.rest.v1.model.response.CreateUserResponse;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CreateUserResponseMapper {
-    public CreateUserResponse from(User user) {
+    public static CreateUserResponse from(User user) {
         if (user == null) {
             return null;
         }
