@@ -14,6 +14,7 @@ public class UserMapper {
         }
         User user = new User();
         user.setId(userJpaEntity.getId());
+        user.setUserName(userJpaEntity.getUserName());
         user.setFirstName(userJpaEntity.getFirstName());
         user.setLastName(userJpaEntity.getLastName());
         user.setEmail(userJpaEntity.getEmail());

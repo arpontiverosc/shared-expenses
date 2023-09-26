@@ -13,6 +13,7 @@ public class UserErrorCode {
 
     //userName
     public static final String USER_NAME_MANDATORY = "user.userName.mandatory";
+    public static final String USER_NAME_REPEATED = "user.userName.repeated";
     public static final String USER_NAME_MIN_LENGTH = "user.userName.minLength";
     public static final String USER_NAME_MAX_LENGTH = "user.userName.maxLength";
 

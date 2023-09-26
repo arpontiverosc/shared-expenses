@@ -5,6 +5,8 @@ import com.clean.architecture.sharedexpenses.user_groups.domain.port.in.CreateUs
 import com.clean.architecture.sharedexpenses.user_groups.domain.port.in.model.CreateUserCommand;
 
 import com.clean.architecture.sharedexpenses.user_groups.domain.port.out.SaveUserRepository;
+import com.clean.architecture.sharedexpenses.user_groups.domain.service.UserService;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,12 +19,14 @@ import java.util.UUID;
 public class CreateUserUseCaseImpl implements CreateUserUseCase {
 
     private final SaveUserRepository saveUserRepository;
+    private final UserService userService;
 
     @Transactional
     @Override
     public User execute(CreateUserCommand command) {
         validateCommand(command);
         User user = createUserFromCommand(command);
+        userService.existsUserName(user.getUserName());
         return saveUserRepository.save(user);
     }
 
@@ -37,5 +41,6 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
     }
 
     private void validateCommand(CreateUserCommand command) {
+
     }
 }
