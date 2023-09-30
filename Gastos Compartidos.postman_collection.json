@@ -1,0 +1,232 @@
+{
+	"info": {
+		"_postman_id": "ab3cdbb6-afb6-49d0-b3e7-a76b0c3fbbeb",
+		"name": "Gastos Compartidos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28815477"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "New user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userName\": \"antonioPontiveros1\",\n    \"firstName\":  \"Antonio\",\n    \"lastName\":  \"Pontiveros\",\n    \"email\" : \"antonio@gmail.com\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/v1/users/8a364035-f1fb-4b9d-9981-1c844de3b624",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"users",
+								"8a364035-f1fb-4b9d-9981-1c844de3b624"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Group",
+			"item": [
+				{
+					"name": "New group",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"groupName\": \"antonioPontiveros1\"   \n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/groups",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add user to group",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": 2\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/groups/1011/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"groups",
+								"1011",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get users by group",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/groups/1011/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"groups",
+								"1011",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Expenses",
+			"item": [
+				{
+					"name": "Get group expenses by balance",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/groups/1011/balances/120/expenses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"groups",
+								"1011",
+								"balances",
+								"120",
+								"expenses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add expense to group balance",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{     \n    \"user\": {\n          \"userId\": 2\n    },\n    \"price\": 56,\n    \"currency\": \"€\",\n    \"description\": \"lunch\"   \n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/groups/1011/balances/120/expenses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"groups",
+								"1011",
+								"balances",
+								"120",
+								"expenses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get balance",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/groups/1011/balances/120",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"groups",
+								"1011",
+								"balances",
+								"120"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
