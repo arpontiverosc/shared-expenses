@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "ab3cdbb6-afb6-49d0-b3e7-a76b0c3fbbeb",
+		"_postman_id": "578b5d52-d194-414b-8ba7-c23a48b380b1",
 		"name": "Gastos Compartidos",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "28815477"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -44,7 +43,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/v1/users/8a364035-f1fb-4b9d-9981-1c844de3b624",
+							"raw": "http://localhost:8080/v1/users/0c00fe73-935a-4db0-b0df-19510fe3175d",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -53,7 +52,7 @@
 							"path": [
 								"v1",
 								"users",
-								"8a364035-f1fb-4b9d-9981-1c844de3b624"
+								"0c00fe73-935a-4db0-b0df-19510fe3175d"
 							]
 						}
 					},
@@ -65,7 +64,7 @@
 			"name": "Group",
 			"item": [
 				{
-					"name": "New group",
+					"name": "New group Copy",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -94,13 +93,34 @@
 					"response": []
 				},
 				{
+					"name": "Get group",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/v1/groups/2ecb681f-9eef-4dba-8c48-001c8a8e87c5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"groups",
+								"2ecb681f-9eef-4dba-8c48-001c8a8e87c5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Add user to group",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userId\": 2\n}\n",
+							"raw": "{\n    \"userId\": \"0c00fe73-935a-4db0-b0df-19510fe3175d\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -108,15 +128,16 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/groups/1011/users",
+							"raw": "http://localhost:8080/v1/groups/2ecb681f-9eef-4dba-8c48-001c8a8e87c5/users",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"groups",
-								"1011",
+								"2ecb681f-9eef-4dba-8c48-001c8a8e87c5",
 								"users"
 							]
 						}
