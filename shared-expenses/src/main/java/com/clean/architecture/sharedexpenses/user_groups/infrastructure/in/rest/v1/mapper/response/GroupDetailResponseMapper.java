@@ -5,8 +5,6 @@ import com.clean.architecture.sharedexpenses.user_groups.infrastructure.in.rest.
 
 public class GroupDetailResponseMapper {
     public static GroupDetailResponse from(Group group) {
-        GroupDetailResponse groupDetailResponse = new GroupDetailResponse();
-        groupDetailResponse.setUserName(group.getGroupName());
-        return groupDetailResponse;
+        return new GroupDetailResponse(group.getId(), group.getGroupName());
     }
 }

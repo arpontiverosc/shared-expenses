@@ -1,9 +1,10 @@
 package com.clean.architecture.sharedexpenses.user_groups.infrastructure.out.jpa.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -20,5 +21,12 @@ public class UserJpaEntity {
     private String firstName;
     private String lastName;
     private String email;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "users_groups",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "group_id"))
+    private Set<GroupJpaEntity> groups;
 
 }

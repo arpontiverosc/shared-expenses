@@ -7,4 +7,5 @@ import jakarta.validation.Valid;
 public interface CreateUserUseCase {
 
     User execute(@Valid CreateUserCommand command);
+
 }

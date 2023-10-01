@@ -8,6 +8,8 @@ import com.clean.architecture.sharedexpenses.user_groups.domain.service.GroupSer
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class CreateGroupUseCaseImpl implements CreateGroupUseCase {
@@ -25,6 +27,7 @@ public class CreateGroupUseCaseImpl implements CreateGroupUseCase {
 
     private Group createGroupFromCommand(CreateGroupCommand command) {
         Group group = new Group();
+        group.setId(UUID.randomUUID().toString());
         group.setGroupName(command.getGroupName());
         return group;
     }

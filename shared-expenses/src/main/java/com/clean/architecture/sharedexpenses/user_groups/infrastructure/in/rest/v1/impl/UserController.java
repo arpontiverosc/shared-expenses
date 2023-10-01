@@ -24,15 +24,11 @@ public class UserController implements UserApi {
 
     @Override
     public CreateUserResponse createUserV1(CreateUserRequest request) {
-
         return CreateUserResponseMapper.from(createUserUseCase.execute(CreateUserCommandMapper.from(request)));
-
     }
 
     @Override
     public UserDetailResponse detailUserV1(String userId) {
-
         return UserDetailResponseMapper.from(detailUserUseCase.execute(DetailUserQueryMapper.from(userId)));
-
     }
 }

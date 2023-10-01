@@ -4,7 +4,6 @@ import com.clean.architecture.sharedexpenses.user_groups.domain.port.in.model.De
 
 public class DetailGroupQueryMapper {
     public static DetailGroupQuery from(String groupId) {
-
-
+        return new DetailGroupQuery(groupId);
     }
 }
