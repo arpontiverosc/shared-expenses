@@ -1,6 +1,7 @@
 package com.clean.architecture.sharedexpenses.user_groups.infrastructure.out.jpa.impl;
 
 import com.clean.architecture.sharedexpenses.user_groups.domain.model.Group;
+import com.clean.architecture.sharedexpenses.user_groups.domain.model.User;
 import com.clean.architecture.sharedexpenses.user_groups.domain.port.out.FindGroupByIdRepository;
 import com.clean.architecture.sharedexpenses.user_groups.domain.port.out.SaveGroupRepository;
 import com.clean.architecture.sharedexpenses.user_groups.infrastructure.out.jpa.SpringDataGroupRepository;
@@ -25,35 +26,40 @@ public class JpaGroupRepositoryImpl implements SaveGroupRepository, FindGroupByI
     private final SpringDataUserRepository springDataUserRepository;
 
 
+    private void saveUpdatedGroup(GroupJpaEntity groupJpaEntity, Group group) {
+
+        Set<UserJpaEntity> entityUsers = groupJpaEntity.getUsers();
+
+        List<String> usersAddedIds = entityUsers.stream().map(UserJpaEntity::getId).toList();
+        List<String> domainUsers = group.getUsers().stream().map(User::getId).toList();
+
+        List<String> notIncludedUsers = domainUsers.stream().filter(user -> !usersAddedIds.contains(user)).collect(Collectors.toList());
+
+        List<UserJpaEntity> userJpaEntities = springDataUserRepository.findAllById(notIncludedUsers);
+
+        groupJpaEntity.getUsers().addAll(userJpaEntities);
+        springDataGroupRepository.save(groupJpaEntity);
+
+        userJpaEntities.forEach(userJpaEntityItem -> {
+            userJpaEntityItem.getGroups().add(groupJpaEntity);
+            springDataUserRepository.save(userJpaEntityItem);
+        });
+
+    }
+
     @Override
     public Group save(Group group) {
 
         GroupJpaEntity groupJpaEntityToSave = GroupMapper.from(group);
-
-        ///filtrar los usurios que no están en el grupo, es decir los nuevos
-
         Optional<GroupJpaEntity> groupJpaEntity = springDataGroupRepository.findById(group.getId());
 
-        if(groupJpaEntity.isPresent()){
+        if (groupJpaEntity.isPresent()) {
+            saveUpdatedGroup(groupJpaEntity.get(), group);
+        } else {
+            groupJpaEntityToSave = springDataGroupRepository.save(groupJpaEntityToSave);
+        }
 
-             Set<UserJpaEntity> entityUsers =  groupJpaEntity.get().getUsers();
-
-             List<String> usersAddedIds = entityUsers.stream().map(user -> user.getId()).collect(Collectors.toList());
-
-             List<String> domainUsers  = group.getUsers().stream().map(user -> user.getId()).collect(Collectors.toList());
-
-             List<String> notIncludedUsers = domainUsers.stream()
-                     .filter(user -> !usersAddedIds.contains(user))
-                     .collect(Collectors.toList());
-
-             //buscar ids, meterlos en la entidad
-           List<UserJpaEntity> userJpaEntities = springDataUserRepository.findAllById(notIncludedUsers);
-
-           groupJpaEntityToSave.getUsers().addAll(userJpaEntities);
-         }
-
-
-        return GroupMapper.from(springDataGroupRepository.save(groupJpaEntityToSave));
+        return GroupMapper.from(groupJpaEntityToSave);
     }
 
     @Override

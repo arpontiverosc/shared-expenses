@@ -22,7 +22,7 @@ public class UserJpaEntity {
     private String lastName;
     private String email;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
             name = "users_groups",
             joinColumns = @JoinColumn(name = "user_id"),
