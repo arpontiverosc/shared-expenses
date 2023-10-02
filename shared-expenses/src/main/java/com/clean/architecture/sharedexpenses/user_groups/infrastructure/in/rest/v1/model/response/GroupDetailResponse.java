@@ -3,6 +3,8 @@ package com.clean.architecture.sharedexpenses.user_groups.infrastructure.in.rest
 import com.clean.architecture.sharedexpenses.user_groups.domain.model.Group;
 import lombok.*;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -11,6 +13,7 @@ import lombok.*;
 public class GroupDetailResponse {
 
     private String id;
-    private String userName;
+    private String groupName;
+    private List<UserDetailResponse> users;
 
 }

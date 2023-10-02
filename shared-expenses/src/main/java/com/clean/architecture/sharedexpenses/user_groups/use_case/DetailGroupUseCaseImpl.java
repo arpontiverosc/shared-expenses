@@ -1,4 +1,4 @@
-package com.clean.architecture.sharedexpenses.user_groups.user_case;
+package com.clean.architecture.sharedexpenses.user_groups.use_case;
 
 import com.clean.architecture.sharedexpenses.user_groups.domain.model.Group;
 import com.clean.architecture.sharedexpenses.user_groups.domain.port.in.DetailGroupUseCase;

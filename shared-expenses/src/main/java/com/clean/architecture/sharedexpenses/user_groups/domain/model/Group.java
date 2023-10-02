@@ -16,7 +16,7 @@ import java.util.Optional;
 @ToString
 public class Group {
 
-    private String id;
+    @EqualsAndHashCode.Include private String id;
     private String groupName;
     private List<User> users = new ArrayList<>();
 

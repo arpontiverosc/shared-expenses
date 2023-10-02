@@ -35,7 +35,7 @@ public class GroupController implements GroupApi {
     }
 
     @Override
-    public void addUserToGroup(String groupId, AddUserToGroupRequest request) {
+    public void addUserToGroupV1(String groupId, AddUserToGroupRequest request) {
          addUserToGroupUseCase.execute(AddUserToGroupCommandMapper.from(groupId, request));
     }
 

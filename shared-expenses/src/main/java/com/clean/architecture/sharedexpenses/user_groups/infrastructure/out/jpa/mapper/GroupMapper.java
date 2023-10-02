@@ -20,6 +20,7 @@ public class GroupMapper {
         Group group = new Group();
         group.setId(groupJpaEntity.getId());
         group.setGroupName(groupJpaEntity.getGroupName());
+        group.setUsers(groupJpaEntity.getUsers().stream().map(UserMapper::from).toList());
         return group;
     }
 

@@ -25,6 +25,7 @@ public interface GroupApi {
 
     @PostMapping(path = "/{groupId}/users", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    void addUserToGroup(@PathVariable("groupId") String groupId, @Valid @RequestBody AddUserToGroupRequest request);
+    void addUserToGroupV1(@PathVariable("groupId") String groupId, @Valid @RequestBody AddUserToGroupRequest request);
+
 
 }

@@ -1,4 +1,4 @@
-package com.clean.architecture.sharedexpenses.user_groups.user_case;
+package com.clean.architecture.sharedexpenses.user_groups.use_case;
 
 import com.clean.architecture.sharedexpenses.user_groups.domain.model.Group;
 import com.clean.architecture.sharedexpenses.user_groups.domain.port.in.CreateGroupUseCase;
@@ -7,6 +7,7 @@ import com.clean.architecture.sharedexpenses.user_groups.domain.port.out.SaveGro
 import com.clean.architecture.sharedexpenses.user_groups.domain.service.GroupService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -17,6 +18,7 @@ public class CreateGroupUseCaseImpl implements CreateGroupUseCase {
     private final SaveGroupRepository saveGroupRepository;
     private final GroupService groupService;
 
+    @Transactional
     @Override
     public Group execute(CreateGroupCommand command) {
         validateCommand(command);

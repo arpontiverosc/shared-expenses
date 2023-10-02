@@ -1,4 +1,4 @@
-package com.clean.architecture.sharedexpenses.user_groups.user_case;
+package com.clean.architecture.sharedexpenses.user_groups.use_case;
 
 import com.clean.architecture.sharedexpenses.user_groups.domain.model.Group;
 import com.clean.architecture.sharedexpenses.user_groups.domain.model.User;
@@ -9,8 +9,6 @@ import com.clean.architecture.sharedexpenses.user_groups.domain.service.GroupSer
 import com.clean.architecture.sharedexpenses.user_groups.domain.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -29,4 +27,5 @@ public class AddUserToGroupUseCaseImpl implements AddUserToGroupUseCase  {
          group.addUser(user);
          saveGroupRepository.save(group);
     }
+
 }
