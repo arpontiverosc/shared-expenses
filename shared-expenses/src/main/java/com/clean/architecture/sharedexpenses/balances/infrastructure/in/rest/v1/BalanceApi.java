@@ -4,6 +4,7 @@ import com.clean.architecture.sharedexpenses.balances.infrastructure.in.rest.v1.
 import com.clean.architecture.sharedexpenses.balances.infrastructure.in.rest.v1.model.request.CreateBalanceRequest;
 import com.clean.architecture.sharedexpenses.balances.infrastructure.in.rest.v1.model.response.BalanceDetailResponse;
 import com.clean.architecture.sharedexpenses.balances.infrastructure.in.rest.v1.model.response.CreateBalanceResponse;
+import com.clean.architecture.sharedexpenses.balances.infrastructure.in.rest.v1.model.response.AddExpenseToBalanceResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

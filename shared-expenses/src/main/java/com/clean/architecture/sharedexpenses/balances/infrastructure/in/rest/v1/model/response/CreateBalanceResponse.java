@@ -8,6 +8,7 @@ import lombok.*;
 @Getter
 @ToString
 public class CreateBalanceResponse {
+
     private String id;
 
 }
