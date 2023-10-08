@@ -1,5 +1,6 @@
 package com.clean.architecture.sharedexpenses.balances.infrastructure.in.rest.v1;
 
+import com.clean.architecture.sharedexpenses.balances.infrastructure.in.rest.v1.model.request.AddExpenseToBalanceRequest;
 import com.clean.architecture.sharedexpenses.balances.infrastructure.in.rest.v1.model.request.CreateBalanceRequest;
 import com.clean.architecture.sharedexpenses.balances.infrastructure.in.rest.v1.model.response.BalanceDetailResponse;
 import com.clean.architecture.sharedexpenses.balances.infrastructure.in.rest.v1.model.response.CreateBalanceResponse;
@@ -18,5 +19,10 @@ public interface BalanceApi {
 
     @GetMapping(path = "/{balanceId}",produces = MediaType.APPLICATION_JSON_VALUE)
     BalanceDetailResponse detailBalanceV1(@PathVariable String balanceId);
+
+
+    @PostMapping(path = "/{balanceId}/expenses",produces = MediaType.APPLICATION_JSON_VALUE)
+    AddExpenseToBalanceResponse addExpenseToBalanceV1(@PathVariable String balanceId, @Valid @RequestBody AddExpenseToBalanceRequest addExpenseToBalanceRequest);
+
 
 }
