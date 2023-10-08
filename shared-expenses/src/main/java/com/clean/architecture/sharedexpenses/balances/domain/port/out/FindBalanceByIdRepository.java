@@ -2,6 +2,8 @@ package com.clean.architecture.sharedexpenses.balances.domain.port.out;
 
 import com.clean.architecture.sharedexpenses.balances.domain.model.Balance;
 
+import java.util.Optional;
+
 public interface FindBalanceByIdRepository {
-    Balance findById(String balanceId);
+    Optional<Balance> findById(String balanceId);
 }

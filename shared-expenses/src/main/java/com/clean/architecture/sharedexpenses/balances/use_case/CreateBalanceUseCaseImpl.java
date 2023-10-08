@@ -4,7 +4,7 @@ import com.clean.architecture.sharedexpenses.balances.domain.model.Balance;
 import com.clean.architecture.sharedexpenses.balances.domain.port.in.CreateBalanceUseCase;
 import com.clean.architecture.sharedexpenses.balances.domain.port.in.model.CreateBalanceCommand;
 import com.clean.architecture.sharedexpenses.balances.domain.port.out.SaveBalanceRepository;
-import com.clean.architecture.sharedexpenses.balances.domain.service.GroupService;
+import com.clean.architecture.sharedexpenses.balances.domain.service.GroupServiceTemp;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import java.util.UUID;
 public class CreateBalanceUseCaseImpl implements CreateBalanceUseCase {
 
     private final SaveBalanceRepository saveBalanceRepository;
-    private final GroupService groupService;
+    private final GroupServiceTemp groupService;
 
     @Transactional
     @Override

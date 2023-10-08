@@ -12,6 +12,6 @@ public class BalanceService {
     private final FindBalanceByIdRepository findBalanceByIdRepository;
 
     public Balance retrieveBalance(String balanceId) {
-        return findBalanceByIdRepository.findById(balanceId);
+        return findBalanceByIdRepository.findById(balanceId).orElseThrow();
     }
 }
