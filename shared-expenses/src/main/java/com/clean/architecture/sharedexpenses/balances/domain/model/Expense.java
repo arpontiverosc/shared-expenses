@@ -2,7 +2,9 @@ package com.clean.architecture.sharedexpenses.balances.domain.model;
 
 import lombok.*;
 
-@Builder
+import java.math.BigDecimal;
+
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -11,6 +13,12 @@ import lombok.*;
 @ToString
 public class Expense {
 
-
+    @EqualsAndHashCode.Include  private String id;
+    private String balanceId;
+    private String userId;
+    private String groupId;
+    private BigDecimal price;
+    private String currency;
+    private String description;
 
 }

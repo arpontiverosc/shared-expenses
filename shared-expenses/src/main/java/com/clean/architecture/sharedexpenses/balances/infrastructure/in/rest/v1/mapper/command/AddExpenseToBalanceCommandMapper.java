@@ -7,8 +7,14 @@ import com.clean.architecture.sharedexpenses.balances.infrastructure.in.rest.v1.
 public class AddExpenseToBalanceCommandMapper {
 
 
-    public static AddExpenseToBalanceCommand from(AddExpenseToBalanceRequest request) {
-
-
+    public static AddExpenseToBalanceCommand from(String balanceId, AddExpenseToBalanceRequest request) {
+        AddExpenseToBalanceCommand addExpenseToBalanceCommand = new AddExpenseToBalanceCommand();
+        addExpenseToBalanceCommand.setBalanceId(balanceId);
+        addExpenseToBalanceCommand.setUserId(request.getUserId());
+        addExpenseToBalanceCommand.setCurrency(request.getCurrency());
+        addExpenseToBalanceCommand.setPrice(request.getPrice());
+        addExpenseToBalanceCommand.setDescription(request.getDescription());
+        addExpenseToBalanceCommand.setGroupId(request.getGroupId());
+        return addExpenseToBalanceCommand;
     }
 }

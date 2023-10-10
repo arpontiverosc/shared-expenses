@@ -4,9 +4,17 @@ import com.clean.architecture.sharedexpenses.balances.domain.util.ExpenseErrorCo
 import com.clean.architecture.sharedexpenses.balances.domain.util.ExpenseFieldValidation;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class AddExpenseToBalanceRequest {
 
     @NotNull(message = ExpenseErrorCode.EXPENSE_USER_ID_MANDATORY)

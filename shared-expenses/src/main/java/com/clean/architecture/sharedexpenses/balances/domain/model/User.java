@@ -1,5 +1,6 @@
 package com.clean.architecture.sharedexpenses.balances.domain.model;
 
+
 import lombok.*;
 
 
@@ -9,10 +10,10 @@ import lombok.*;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
-public class Group {
+public class User {
 
     @EqualsAndHashCode.Include
     private String id;
-    private String groupName;
+
 
 }

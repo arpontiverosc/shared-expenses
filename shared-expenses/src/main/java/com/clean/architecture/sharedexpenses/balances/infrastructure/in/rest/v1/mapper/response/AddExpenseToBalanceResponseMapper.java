@@ -6,8 +6,7 @@ import com.clean.architecture.sharedexpenses.balances.infrastructure.in.rest.v1.
 public class AddExpenseToBalanceResponseMapper {
     public static AddExpenseToBalanceResponse from(Expense expense) {
         AddExpenseToBalanceResponse addExpenseToBalanceResponse = new AddExpenseToBalanceResponse();
-        addExpenseToBalanceResponse.setId(expense.g);
-
-
+        addExpenseToBalanceResponse.setId(expense.getId());
+        return addExpenseToBalanceResponse;
     }
 }

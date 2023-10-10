@@ -41,6 +41,6 @@ public class BalanceController implements BalanceApi {
 
     @Override
     public AddExpenseToBalanceResponse addExpenseToBalanceV1(String balanceId, AddExpenseToBalanceRequest request) {
-        return AddExpenseToBalanceResponseMapper.from(addExpenseToBalance.execute(AddExpenseToBalanceCommandMapper.from(request)));
+        return AddExpenseToBalanceResponseMapper.from(addExpenseToBalance.execute(AddExpenseToBalanceCommandMapper.from(balanceId, request)));
     }
 }

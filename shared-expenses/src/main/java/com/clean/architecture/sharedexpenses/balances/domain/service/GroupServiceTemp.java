@@ -12,7 +12,7 @@ public class GroupServiceTemp {
     private final ExistsGroupByIdRepository existsGroupByIdRepository;
 
     public void existsGroup(String groupId) {
-        existsGroupByIdRepository.exists(groupId).orElseThrow(GroupNotFoundException::new);
+        if (!existsGroupByIdRepository.existsById(groupId)) throw new GroupNotFoundException();
     }
 
 }

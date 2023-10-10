@@ -3,7 +3,7 @@ package com.clean.architecture.sharedexpenses.user_groups.domain.model;
 
 import lombok.*;
 
-@Builder
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
