@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Service
@@ -33,6 +34,7 @@ public class CreateBalanceUseCaseImpl implements CreateBalanceUseCase {
         balance.setBalanceName(command.getBalanceName());
         balance.setDescription(command.getDescription());
         balance.setGroupId(command.getGroupId());
+        balance.setCreatedAt(OffsetDateTime.now());
         return balance;
     }
 }

@@ -4,12 +4,12 @@ import com.clean.architecture.sharedexpenses.balances.domain.model.Balance;
 import com.clean.architecture.sharedexpenses.balances.infrastructure.in.rest.v1.model.response.BalanceDetailResponse;
 
 public class BalanceDetailResponseMapper {
-    public static BalanceDetailResponse from(Balance request) {
+    public static BalanceDetailResponse from(Balance balance) {
         BalanceDetailResponse balanceDetailResponse = new BalanceDetailResponse();
-        balanceDetailResponse.setBalanceName(request.getBalanceName());
-        balanceDetailResponse.setDescription(request.getDescription());
-        balanceDetailResponse.setGroupId(request.getGroupId());
+        balanceDetailResponse.setId(balance.getId());
+        balanceDetailResponse.setBalanceName(balance.getBalanceName());
+        balanceDetailResponse.setDescription(balance.getDescription());
+        balanceDetailResponse.setGroupId(balance.getGroupId());
         return balanceDetailResponse;
-
     }
 }

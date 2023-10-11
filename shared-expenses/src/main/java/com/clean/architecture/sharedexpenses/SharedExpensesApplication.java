@@ -19,3 +19,4 @@ public class SharedExpensesApplication {
 //volumen con la base de datos
 //dockerizado el jar
 //desplegar en AWS
+//añadir AOP

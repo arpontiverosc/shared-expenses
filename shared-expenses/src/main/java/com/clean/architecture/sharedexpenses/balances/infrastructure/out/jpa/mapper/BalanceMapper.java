@@ -5,7 +5,8 @@ import com.clean.architecture.sharedexpenses.balances.infrastructure.model.Balan
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
-import java.time.OffsetDateTime;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class BalanceMapper {
@@ -15,7 +16,10 @@ public class BalanceMapper {
         balanceJpaEntity.setBalanceName(balance.getBalanceName());
         balanceJpaEntity.setDescription(balance.getDescription());
         balanceJpaEntity.setGroupId(balance.getGroupId());
-        balanceJpaEntity.setCreatedAt(OffsetDateTime.now());
+        balanceJpaEntity.setCreatedAt(balance.getCreatedAt());
+        if (Objects.nonNull(balance.getExpenses()) && !balance.getExpenses().isEmpty()) {
+            balanceJpaEntity.setExpenses(balance.getExpenses().stream().map(ExpenseMapper::from).collect(Collectors.toSet()));
+        }
         return balanceJpaEntity;
     }
 
@@ -26,6 +30,9 @@ public class BalanceMapper {
         balance.setDescription(balanceJpaEntity.getDescription());
         balance.setGroupId(balanceJpaEntity.getGroupId());
         balance.setCreatedAt(balanceJpaEntity.getCreatedAt());
+        if (Objects.nonNull(balanceJpaEntity.getExpenses()) && !balanceJpaEntity.getExpenses().isEmpty()) {
+            balance.setExpenses(balanceJpaEntity.getExpenses().stream().map(ExpenseMapper::from).toList());
+        }
         return balance;
     }
 }

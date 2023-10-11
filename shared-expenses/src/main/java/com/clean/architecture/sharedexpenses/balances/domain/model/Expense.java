@@ -3,6 +3,7 @@ package com.clean.architecture.sharedexpenses.balances.domain.model;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 
 
 @NoArgsConstructor
@@ -20,5 +21,6 @@ public class Expense {
     private BigDecimal price;
     private String currency;
     private String description;
+    private OffsetDateTime createdAt;
 
 }

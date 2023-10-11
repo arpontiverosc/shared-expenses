@@ -26,7 +26,7 @@ public class JpaGroupRepositoryImpl implements SaveGroupRepository, FindGroupByI
     private final SpringDataUserRepository springDataUserRepository;
 
 
-    private void saveUpdatedGroup(GroupJpaEntity groupJpaEntity, Group group) {
+    private void addUserToGroup(GroupJpaEntity groupJpaEntity, Group group) {
 
         Set<UserJpaEntity> entityUsers = groupJpaEntity.getUsers();
 
@@ -54,7 +54,8 @@ public class JpaGroupRepositoryImpl implements SaveGroupRepository, FindGroupByI
         Optional<GroupJpaEntity> groupJpaEntity = springDataGroupRepository.findById(group.getId());
 
         if (groupJpaEntity.isPresent()) {
-            saveUpdatedGroup(groupJpaEntity.get(), group);
+            addUserToGroup(groupJpaEntity.get(), group);
+            //merge if necessary in future
         } else {
             groupJpaEntityToSave = springDataGroupRepository.save(groupJpaEntityToSave);
         }

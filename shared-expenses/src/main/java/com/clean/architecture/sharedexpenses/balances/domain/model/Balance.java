@@ -22,7 +22,7 @@ public class Balance {
     private String description;
     private String groupId;
     private OffsetDateTime createdAt;
-    private List<Expense> expenses;
+    private List<Expense> expenses = new ArrayList<>();
 
 
     public void addExpense(Expense expense) {

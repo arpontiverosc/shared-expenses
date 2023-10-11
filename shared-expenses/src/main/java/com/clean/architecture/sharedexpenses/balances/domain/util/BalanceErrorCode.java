@@ -17,9 +17,9 @@ public class BalanceErrorCode {
     public static final String BALANCE_NAME_MAX_LENGTH = "balance.balanceName.maxLength";
 
     //balanceDescription
-    public static final String BALANCE_DESCRIPTION_MANDATORY = "balance.balanceName.mandatory";
-    public static final String BALANCE_DESCRIPTION_MIN_LENGTH = "balance.balanceName.minLength";
-    public static final String BALANCE_DESCRIPTION_MAX_LENGTH = "balance.balanceName.maxLength";
+    public static final String BALANCE_DESCRIPTION_MANDATORY = "balance.balanceDescription.mandatory";
+    public static final String BALANCE_DESCRIPTION_MIN_LENGTH = "balance.balanceDescription.minLength";
+    public static final String BALANCE_DESCRIPTION_MAX_LENGTH = "balance.balanceDescription.maxLength";
 
     //balanceGroup
     public static final String BALANCE_GROUP_ID_MANDATORY = "balance.groupId.mandatory";

@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Service
@@ -46,6 +47,7 @@ public class AddExpenseToBalanceImpl implements AddExpenseToBalance {
         expense.setDescription(command.getDescription());
         expense.setUserId(command.getUserId());
         expense.setPrice(command.getPrice());
+        expense.setCreatedAt(OffsetDateTime.now());
         return expense;
     }
 }
