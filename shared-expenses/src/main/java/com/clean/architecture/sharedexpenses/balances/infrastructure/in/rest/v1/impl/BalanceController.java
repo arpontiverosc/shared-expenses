@@ -16,6 +16,7 @@ import com.clean.architecture.sharedexpenses.balances.infrastructure.in.rest.v1.
 import com.clean.architecture.sharedexpenses.balances.infrastructure.in.rest.v1.model.response.CreateBalanceResponse;
 import com.clean.architecture.sharedexpenses.balances.infrastructure.in.rest.v1.mapper.response.AddExpenseToBalanceResponseMapper;
 
+import com.clean.architecture.sharedexpenses.balances.infrastructure.in.rest.v1.model.response.ExpensesForBalanceResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,5 +43,10 @@ public class BalanceController implements BalanceApi {
     @Override
     public AddExpenseToBalanceResponse addExpenseToBalanceV1(String balanceId, AddExpenseToBalanceRequest request) {
         return AddExpenseToBalanceResponseMapper.from(addExpenseToBalance.execute(AddExpenseToBalanceCommandMapper.from(balanceId, request)));
+    }
+
+    @Override
+    public ExpensesForBalanceResponse obtainExpensesForBalanceV1(String balanceId) {
+        return null;
     }
 }

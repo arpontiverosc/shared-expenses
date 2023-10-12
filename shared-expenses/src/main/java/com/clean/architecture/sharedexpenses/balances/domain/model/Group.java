@@ -2,6 +2,8 @@ package com.clean.architecture.sharedexpenses.balances.domain.model;
 
 import lombok.*;
 
+import java.util.Set;
+
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,5 +16,6 @@ public class Group {
     @EqualsAndHashCode.Include
     private String id;
     private String groupName;
+    private Set<String> membersIds;
 
 }

@@ -15,7 +15,7 @@ public class BalanceMapper {
         balanceJpaEntity.setId(balance.getId());
         balanceJpaEntity.setBalanceName(balance.getBalanceName());
         balanceJpaEntity.setDescription(balance.getDescription());
-        balanceJpaEntity.setGroupId(balance.getGroupId());
+        balanceJpaEntity.setGroupId(balance.getGroup().getId());
         balanceJpaEntity.setCreatedAt(balance.getCreatedAt());
         if (Objects.nonNull(balance.getExpenses()) && !balance.getExpenses().isEmpty()) {
             balanceJpaEntity.setExpenses(balance.getExpenses().stream().map(ExpenseMapper::from).collect(Collectors.toSet()));
@@ -28,7 +28,6 @@ public class BalanceMapper {
         balance.setId(balanceJpaEntity.getId());
         balance.setBalanceName(balanceJpaEntity.getBalanceName());
         balance.setDescription(balanceJpaEntity.getDescription());
-        balance.setGroupId(balanceJpaEntity.getGroupId());
         balance.setCreatedAt(balanceJpaEntity.getCreatedAt());
         if (Objects.nonNull(balanceJpaEntity.getExpenses()) && !balanceJpaEntity.getExpenses().isEmpty()) {
             balance.setExpenses(balanceJpaEntity.getExpenses().stream().map(ExpenseMapper::from).toList());

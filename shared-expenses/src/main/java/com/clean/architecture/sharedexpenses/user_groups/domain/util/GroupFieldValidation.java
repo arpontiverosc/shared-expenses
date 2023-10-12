@@ -11,7 +11,7 @@ public class GroupFieldValidation {
     //groupName
 
     public static final int GROUP_NAME_MIN_LENGTH = 6;
-    public static final int GROUP_NAME_MAX_LENGTH = 25;
+    public static final int GROUP_NAME_MAX_LENGTH = 50;
 
 
 }

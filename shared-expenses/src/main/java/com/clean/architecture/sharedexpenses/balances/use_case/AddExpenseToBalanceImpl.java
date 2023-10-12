@@ -30,6 +30,7 @@ public class AddExpenseToBalanceImpl implements AddExpenseToBalance {
 
         groupService.existsGroup(command.getGroupId());
         userServiceTemp.existsUser(command.getUserId());
+        //groupService.isUserPartOftheGroup(command.getUserId());
         Balance balance = balanceService.retrieveBalance(command.getBalanceId());
         Expense expense = createExpenseFromCommand(command);
         balance.addExpense(expense);
@@ -46,6 +47,8 @@ public class AddExpenseToBalanceImpl implements AddExpenseToBalance {
         expense.setPrice(command.getPrice());
         expense.setDescription(command.getDescription());
         expense.setUserId(command.getUserId());
+        expense.setGroupId(command.getGroupId());
+        expense.setCurrency(command.getCurrency());
         expense.setPrice(command.getPrice());
         expense.setCreatedAt(OffsetDateTime.now());
         return expense;
