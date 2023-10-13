@@ -15,7 +15,6 @@ public class Group {
 
     @EqualsAndHashCode.Include
     private String id;
-    private String groupName;
     private Set<String> membersIds;
 
 }

@@ -94,11 +94,13 @@ public class JpaBalanceRepositoryImpl implements SaveBalanceRepository, FindBala
     }*/
     @Override
     public Optional<Balance> findById(String balanceId) {
+
         Optional<BalanceJpaEntity> balanceJpaEntity = springDataBalanceRepository.findById(balanceId);
 
         if (balanceJpaEntity.isPresent()) {
 
             Balance balance = BalanceMapper.from(balanceJpaEntity.get());
+
             Optional<Group> groupOptional = springDataGroupTempRepository.findById(balanceJpaEntity.get().getGroupId())
                     .map(GroupMapper::from);
 

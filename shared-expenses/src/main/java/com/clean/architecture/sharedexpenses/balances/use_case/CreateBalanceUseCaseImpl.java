@@ -1,6 +1,7 @@
 package com.clean.architecture.sharedexpenses.balances.use_case;
 
 import com.clean.architecture.sharedexpenses.balances.domain.model.Balance;
+import com.clean.architecture.sharedexpenses.balances.domain.model.Group;
 import com.clean.architecture.sharedexpenses.balances.domain.port.in.CreateBalanceUseCase;
 import com.clean.architecture.sharedexpenses.balances.domain.port.in.model.CreateBalanceCommand;
 import com.clean.architecture.sharedexpenses.balances.domain.port.out.SaveBalanceRepository;
@@ -23,7 +24,6 @@ public class CreateBalanceUseCaseImpl implements CreateBalanceUseCase {
     @Transactional
     @Override
     public Balance execute(CreateBalanceCommand command) {
-       groupService.existsGroup(command.getGroupId());
        return saveBalanceRepository.save(createBalanceFromCommand(command));
     }
 
@@ -33,7 +33,7 @@ public class CreateBalanceUseCaseImpl implements CreateBalanceUseCase {
         balance.setId(UUID.randomUUID().toString());
         balance.setBalanceName(command.getBalanceName());
         balance.setDescription(command.getDescription());
-        balance.setGroupId(command.getGroupId());
+        balance.setGroup(groupService.retrieveGroup(command.getGroupId()));
         balance.setCreatedAt(OffsetDateTime.now());
         return balance;
     }

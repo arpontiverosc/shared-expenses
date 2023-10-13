@@ -5,10 +5,7 @@ import lombok.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -35,7 +32,7 @@ public class Balance {
     }
 
     public List<String> getPayerUsersId() {
-        return expenses.stream().map(expense -> expense.getUserId()).distinct().toList();
+        return expenses.stream().map(Expense::getUserId).distinct().toList();
     }
 
 
@@ -43,27 +40,98 @@ public class Balance {
 
         List<String> payersId = getPayerUsersId();
 
-        Map<String, BigDecimal> totalSpentByUser = payersId.stream().collect(Collectors.toMap(
-                payerId -> payerId,
-                payerId -> {
-                        List<Expense> userExpenses = expenses.stream().filter(expense -> expense.getUserId().equals(payerId)).toList();
-                        BigDecimal amountPaid = userExpenses.stream().map(userExpense -> userExpense.getPrice()).reduce(BigDecimal.ZERO, BigDecimal::add);
-                        return amountPaid;
+        return payersId.stream().collect(Collectors.toMap(payerId -> payerId, payerId -> {
+            List<Expense> userExpenses = expenses.stream().filter(expense -> expense.getUserId().equals(payerId)).toList();
+            return userExpenses.stream().map(Expense::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
+
         }));
 
-        return totalSpentByUser;
+    }
+
+    public BigDecimal getTotalExpensesAmount() {
+        return expenses.stream().map(Expense::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    public BigDecimal getAmountPerUser() {
+        BigDecimal totalAmount = getTotalExpensesAmount();
+        return totalAmount.divide(BigDecimal.valueOf(group.getMembersIds().size()), RoundingMode.HALF_UP);
+    }
+
+    public List<UserPaymentSummary> getUsersPaymentSummary() {
+
+        final BigDecimal amountToPayPerUser = getAmountPerUser();
+
+        return getPayerUsersId().stream().map(userId -> {
+
+            UserPaymentSummary userPaymentSummary = new UserPaymentSummary();
+            userPaymentSummary.setUserId(userId);
+
+            BigDecimal totalSpentByUser = getTotalSpentByUser().get(userId);
+
+            userPaymentSummary.setAmountPaid(totalSpentByUser);
+            userPaymentSummary.setAmountToBePaid(totalSpentByUser.subtract(amountToPayPerUser));
+
+            return userPaymentSummary;
+
+        }).toList();
+
 
     }
 
-    public BigDecimal getTotalExpensesAmount(){
-        return expenses.stream().map(expense -> expense.getPrice()).reduce(BigDecimal.ZERO, BigDecimal::add);
+
+    public List<SettlementPayment> getUsersSettlementPayments() {
+
+        List<UserPaymentSummary> userPaymentSummaries = getUsersPaymentSummary();
+
+        List<UserPaymentSummary> balanceBeneficiary = userPaymentSummaries.stream()
+                .filter(balance -> balance.getAmountToBePaid().compareTo(BigDecimal.ZERO) > 0)
+                .sorted(Comparator.comparing(UserPaymentSummary::getAmountToBePaid).reversed())
+                .toList();
+
+        List<UserPaymentSummary> balanceDebtors = userPaymentSummaries.stream()
+                .filter(balance -> balance.getAmountToBePaid().compareTo(BigDecimal.ZERO) < 0)
+                .sorted(Comparator.comparing(UserPaymentSummary::getAmountToBePaid))
+                .toList();
+
+        Map<String, BigDecimal> balancesAux = userPaymentSummaries.stream()
+                .collect(Collectors.toMap(
+                        UserPaymentSummary::getUserId,
+                        UserPaymentSummary::getAmountToBePaid));
+
+        List<SettlementPayment> settlementPayments = new ArrayList<>();
+
+        while (!balanceDebtors.isEmpty() && !balanceBeneficiary.isEmpty()) {
+
+            UserPaymentSummary debtor = balanceDebtors.get(0);
+            UserPaymentSummary creditor = balanceBeneficiary.get(0);
+
+            BigDecimal debt = balancesAux.get(debtor.getUserId());
+            BigDecimal credit = balancesAux.get(creditor.getUserId());
+
+            BigDecimal payment = debt.abs().min(credit);
+
+            balancesAux.put(debtor.getUserId(), debt.add(payment));
+            balancesAux.put(creditor.getUserId(), credit.subtract(payment));
+
+            SettlementPayment settlementPayment = new SettlementPayment();
+            settlementPayment.setBeneficiary(creditor.getUserId());
+            settlementPayment.setDebtor(debtor.getUserId());
+            settlementPayment.setAmountToPay(payment);
+
+            settlementPayments.add(settlementPayment);
+
+            if (balancesAux.get(debtor.getUserId()).abs().compareTo(BigDecimal.valueOf(0.01)) < 0 )  {
+                balanceDebtors.remove(0);
+            }
+
+            if (balancesAux.get(creditor.getUserId()).abs().compareTo(BigDecimal.valueOf(0.01)) < 0 )  {
+                balanceBeneficiary.remove(0);
+            }
+
+        }
+
+        return settlementPayments;
+
     }
-
-   public BigDecimal getAmountPerUser(){
-       BigDecimal totalAmount = getTotalExpensesAmount();
-       return totalAmount.divide(BigDecimal.valueOf(group.getMembersIds().size()), RoundingMode.HALF_UP);
-   }
-
-   
 
 }

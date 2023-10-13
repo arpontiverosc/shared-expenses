@@ -13,7 +13,6 @@ public class GroupMapper {
     public static Group from(GroupTempJpaEntity groupJpaEntity) {
         Group group = new Group();
         group.setId(groupJpaEntity.getId());
-        group.setGroupName(groupJpaEntity.getGroupName());
         group.setMembersIds(groupJpaEntity.getUsers().stream().map(user -> user.getId()).collect(Collectors.toSet()));
         return group;
     }
