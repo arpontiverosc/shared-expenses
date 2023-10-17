@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 @ToString
 public class SettlementPayment {
 
-    private String beneficiary;
-    private String debtor;
+    private String beneficiaryId;
+    private String debtorId;
     private BigDecimal amountToPay;
 }

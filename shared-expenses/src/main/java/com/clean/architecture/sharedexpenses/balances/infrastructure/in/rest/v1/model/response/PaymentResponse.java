@@ -6,16 +6,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 public class PaymentResponse {
 
-    private Long beneficiary;
-    private Long beneficiaryName;
-    private Long debtor;
-    private Long debtorName;
+    private String beneficiaryId;
+    private String debtorId;
     private BigDecimal amountToPay;
 
 }

@@ -1,21 +1,109 @@
 {
 	"info": {
-		"_postman_id": "578b5d52-d194-414b-8ba7-c23a48b380b1",
+		"_postman_id": "0677441d-c9c4-4f43-85d0-84833f817785",
 		"name": "Gastos Compartidos",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28815477"
 	},
 	"item": [
 		{
 			"name": "Users",
 			"item": [
 				{
-					"name": "New user",
+					"name": "New user Francisco",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userName\": \"antonioPontiveros1\",\n    \"firstName\":  \"Antonio\",\n    \"lastName\":  \"Pontiveros\",\n    \"email\" : \"antonio@gmail.com\"\n}\n",
+							"raw": "{\n    \"userName\": \"franciscobuyo\",\n    \"firstName\":  \"Francisco\",\n    \"lastName\":  \"Buyo\",\n    \"email\" : \"franciscobuyo@gmail.com\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New user Alfonso",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userName\": \"alfonsoperez\",\n    \"firstName\":  \"Alfonso\",\n    \"lastName\":  \"Pérez\",\n    \"email\" : \"alfonsoperez@gmail.com\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New user Raúl",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userName\": \"raulgonzalez\",\n    \"firstName\":  \"Raúl\",\n    \"lastName\":  \"González\",\n    \"email\" : \"raulgonzalez@gmail.com\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New user José María",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userName\": \"jmaríagutierrez\",\n    \"firstName\":  \"José María\",\n    \"lastName\":  \"Gutiérrez\",\n    \"email\" : \"jmaríagutierrez@gmail.com\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -43,7 +131,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/v1/users/0c00fe73-935a-4db0-b0df-19510fe3175d",
+							"raw": "http://localhost:8080/v1/users/08776b4a-af9d-4991-8662-560a7c64ab76",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -52,7 +140,7 @@
 							"path": [
 								"v1",
 								"users",
-								"0c00fe73-935a-4db0-b0df-19510fe3175d"
+								"08776b4a-af9d-4991-8662-560a7c64ab76"
 							]
 						}
 					},
@@ -64,13 +152,13 @@
 			"name": "Group",
 			"item": [
 				{
-					"name": "New group Copy",
+					"name": "New group",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"groupName\": \"antonioPontiveros1\"   \n}\n",
+							"raw": "{\n    \"groupName\": \"groupNameExpenses\"   \n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -98,7 +186,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/v1/groups/2ecb681f-9eef-4dba-8c48-001c8a8e87c5",
+							"raw": "http://localhost:8080/v1/groups/6e196e04-a342-4326-88f4-5e5d9adc789e",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -107,7 +195,7 @@
 							"path": [
 								"v1",
 								"groups",
-								"2ecb681f-9eef-4dba-8c48-001c8a8e87c5"
+								"6e196e04-a342-4326-88f4-5e5d9adc789e"
 							]
 						}
 					},
@@ -120,7 +208,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userId\": \"0c00fe73-935a-4db0-b0df-19510fe3175d\"\n}\n",
+							"raw": "{\n    \"userId\": \"08776b4a-af9d-4991-8662-560a7c64ab76\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -128,7 +216,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/v1/groups/2ecb681f-9eef-4dba-8c48-001c8a8e87c5/users",
+							"raw": "http://localhost:8080/v1/groups/6e196e04-a342-4326-88f4-5e5d9adc789e/users",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -137,28 +225,7 @@
 							"path": [
 								"v1",
 								"groups",
-								"2ecb681f-9eef-4dba-8c48-001c8a8e87c5",
-								"users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get users by group",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/groups/1011/users",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"groups",
-								"1011",
+								"6e196e04-a342-4326-88f4-5e5d9adc789e",
 								"users"
 							]
 						}
@@ -171,36 +238,13 @@
 			"name": "Expenses",
 			"item": [
 				{
-					"name": "Get group expenses by balance",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/groups/1011/balances/120/expenses",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"groups",
-								"1011",
-								"balances",
-								"120",
-								"expenses"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Add expense to group balance",
+					"name": "New balance",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{     \n    \"user\": {\n          \"userId\": 2\n    },\n    \"price\": 56,\n    \"currency\": \"€\",\n    \"description\": \"lunch\"   \n}\n",
+							"raw": "{\r\n    \"balanceName\": \"weekend\",  \r\n    \"description\": \"balance weekend\",\r\n    \"groupId\" : \"6e196e04-a342-4326-88f4-5e5d9adc789e\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -208,18 +252,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/groups/1011/balances/120/expenses",
+							"raw": "http://localhost:8080/v1/balances",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"groups",
-								"1011",
-								"balances",
-								"120",
-								"expenses"
+								"v1",
+								"balances"
 							]
 						}
 					},
@@ -231,17 +272,109 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/groups/1011/balances/120",
+							"raw": "http://localhost:8080/v1/balances/6e195d8d-3104-4fea-b9aa-5738f361064d",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"groups",
-								"1011",
+								"v1",
 								"balances",
-								"120"
+								"6e195d8d-3104-4fea-b9aa-5738f361064d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New expense Francisco-Cena",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{       \r\n   \"description\":\" Cena Cena\",\r\n   \"price\": 100,  \r\n   \"currency\": \"€\",\r\n   \"userId\": \"54d4df3e-a7f6-4e14-8a83-03f04718139e\",\r\n   \"groupId\": \"6e196e04-a342-4326-88f4-5e5d9adc789e\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/balances/6e195d8d-3104-4fea-b9aa-5738f361064d/expenses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"balances",
+								"6e195d8d-3104-4fea-b9aa-5738f361064d",
+								"expenses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New expense Alfonso-Taxi",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{       \r\n   \"description\":\"Taxi Taxi\",\r\n   \"price\": 10,  \r\n   \"currency\": \"€\",\r\n   \"userId\": \"36d8eee5-2c7c-447d-b430-663c80eb249a\",\r\n   \"groupId\": \"6e196e04-a342-4326-88f4-5e5d9adc789e\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/balances/6e195d8d-3104-4fea-b9aa-5738f361064d/expenses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"balances",
+								"6e195d8d-3104-4fea-b9aa-5738f361064d",
+								"expenses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New expense Alfonso-Compra",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{       \r\n   \"description\":\"Compra super\",\r\n   \"price\": 53.40,  \r\n   \"currency\": \"€\",\r\n   \"userId\": \"36d8eee5-2c7c-447d-b430-663c80eb249a\",\r\n   \"groupId\": \"6e196e04-a342-4326-88f4-5e5d9adc789e\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/balances/6e195d8d-3104-4fea-b9aa-5738f361064d/expenses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"balances",
+								"6e195d8d-3104-4fea-b9aa-5738f361064d",
+								"expenses"
 							]
 						}
 					},

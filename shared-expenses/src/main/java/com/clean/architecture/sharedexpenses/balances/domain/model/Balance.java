@@ -35,6 +35,21 @@ public class Balance {
         return expenses.stream().map(Expense::getUserId).distinct().toList();
     }
 
+    public int getUserNumberGroup() {
+        return Optional.ofNullable(group)
+                .flatMap(g -> Optional.ofNullable(g.getMembersIds()))
+                .map(Set::size)
+                .orElse(0);
+    }
+
+    public List<String> getUsersIdGroup() {
+        return Optional.ofNullable(group)
+                .map(Group::getMembersIds)
+                .orElse(Collections.emptySet())
+                .stream()
+                .map(Objects::toString)
+                .collect(Collectors.toList());
+    }
 
     public Map<String, BigDecimal> getTotalSpentByUser() {
 
@@ -60,14 +75,17 @@ public class Balance {
     public List<UserPaymentSummary> getUsersPaymentSummary() {
 
         final BigDecimal amountToPayPerUser = getAmountPerUser();
+        final Map<String, BigDecimal> totalSpentByUsers = getTotalSpentByUser();
 
-        return getPayerUsersId().stream().map(userId -> {
+        return getUsersIdGroup().stream().map(userId -> {
 
             UserPaymentSummary userPaymentSummary = new UserPaymentSummary();
             userPaymentSummary.setUserId(userId);
 
-            BigDecimal totalSpentByUser = getTotalSpentByUser().get(userId);
-
+            BigDecimal totalSpentByUser = BigDecimal.ZERO;
+            if(totalSpentByUsers.containsKey(userId)) {
+                totalSpentByUser = totalSpentByUsers.get(userId);
+            }
             userPaymentSummary.setAmountPaid(totalSpentByUser);
             userPaymentSummary.setAmountToBePaid(totalSpentByUser.subtract(amountToPayPerUser));
 
@@ -78,20 +96,19 @@ public class Balance {
 
     }
 
-
     public List<SettlementPayment> getUsersSettlementPayments() {
 
         List<UserPaymentSummary> userPaymentSummaries = getUsersPaymentSummary();
 
-        List<UserPaymentSummary> balanceBeneficiary = userPaymentSummaries.stream()
+        List<UserPaymentSummary> balanceBeneficiary = new ArrayList<>(userPaymentSummaries.stream()
                 .filter(balance -> balance.getAmountToBePaid().compareTo(BigDecimal.ZERO) > 0)
                 .sorted(Comparator.comparing(UserPaymentSummary::getAmountToBePaid).reversed())
-                .toList();
+                .toList());
 
-        List<UserPaymentSummary> balanceDebtors = userPaymentSummaries.stream()
+        List<UserPaymentSummary> balanceDebtors = new ArrayList<>(userPaymentSummaries.stream()
                 .filter(balance -> balance.getAmountToBePaid().compareTo(BigDecimal.ZERO) < 0)
                 .sorted(Comparator.comparing(UserPaymentSummary::getAmountToBePaid))
-                .toList();
+                .toList());
 
         Map<String, BigDecimal> balancesAux = userPaymentSummaries.stream()
                 .collect(Collectors.toMap(
@@ -114,8 +131,8 @@ public class Balance {
             balancesAux.put(creditor.getUserId(), credit.subtract(payment));
 
             SettlementPayment settlementPayment = new SettlementPayment();
-            settlementPayment.setBeneficiary(creditor.getUserId());
-            settlementPayment.setDebtor(debtor.getUserId());
+            settlementPayment.setBeneficiaryId(creditor.getUserId());
+            settlementPayment.setDebtorId(debtor.getUserId());
             settlementPayment.setAmountToPay(payment);
 
             settlementPayments.add(settlementPayment);
@@ -133,5 +150,6 @@ public class Balance {
         return settlementPayments;
 
     }
+
 
 }

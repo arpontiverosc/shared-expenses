@@ -13,10 +13,13 @@ public class ExpenseMapper {
     public static Expense from(ExpenseJpaEntity expenseJpaEntity) {
         Expense expense = new Expense();
         expense.setId(expenseJpaEntity.getId());
-        expense.setDescription(expense.getDescription());
-        expense.setPrice(expense.getPrice());
-        expense.setUserId(expense.getUserId());
-        expense.setCurrency(expense.getCurrency());
+        expense.setDescription(expenseJpaEntity.getDescription());
+        expense.setPrice(expenseJpaEntity.getPrice());
+        expense.setUserId(expenseJpaEntity.getUserId());
+        expense.setGroupId(expenseJpaEntity.getGroupId());
+        expense.setBalanceId(expenseJpaEntity.getBalance().getId());
+        expense.setCurrency(expenseJpaEntity.getCurrency());
+        expense.setCreatedAt(expenseJpaEntity.getCreatedAt());
         return expense;
     }
 

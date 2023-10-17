@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @Setter
 public class BalanceAmountResponse {
 
-    private Long userId;
+    private String userId;
     private BigDecimal amountPaid;
     private BigDecimal amountFinal;
 }
