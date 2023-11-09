@@ -31,13 +31,15 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
     }
 
     private User createUserFromCommand(CreateUserCommand command) {
-            User user = new User();
-            user.setId(UUID.randomUUID().toString());
-            user.setUserName(command.getUserName());
-            user.setFirstName(command.getFirstName());
-            user.setLastName(command.getLastName());
-            user.setEmail(command.getEmail());
-            return user;
+
+        return User.builder()
+            .id(UUID.randomUUID().toString())
+            .userName(command.getUserName())
+            .firstName(command.getFirstName())
+            .lastName(command.getLastName())
+            .email(command.getEmail())
+            .build() ;
+
     }
 
     private void validateCommand(CreateUserCommand command) {

@@ -1,6 +1,6 @@
 package com.clean.architecture.sharedexpenses.balances.domain.model;
 
-import lombok.*;
+
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -9,15 +9,10 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@ToString
+
 public class Balance {
 
-    @EqualsAndHashCode.Include
+
     private String id;
     private String balanceName;
     private String description;

@@ -13,6 +13,7 @@ public class SharedExpensesApplication {
 }
 
 //Limpiar core de framework, crear getter y setters, no utilizar @Service
+//value objects
 //utilizar builders
 //crear usuarios y enviar a una cosa para tener una base de datos de memoria rápida y comperoabar la existencia
 //test integración con contenedores

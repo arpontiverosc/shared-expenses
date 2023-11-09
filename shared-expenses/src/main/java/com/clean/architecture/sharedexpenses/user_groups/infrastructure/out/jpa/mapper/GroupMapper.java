@@ -17,10 +17,11 @@ public class GroupMapper {
     }
 
     public static Group from(GroupJpaEntity groupJpaEntity) {
-        Group group = new Group();
-        group.setId(groupJpaEntity.getId());
-        group.setGroupName(groupJpaEntity.getGroupName());
-        group.setUsers(groupJpaEntity.getUsers().stream().map(UserMapper::from).toList());
+        Group group = Group.builder()
+                .id(groupJpaEntity.getId())
+                .groupName(groupJpaEntity.getGroupName())
+                .build();
+        group.addUsers(groupJpaEntity.getUsers().stream().map(UserMapper::from).toList());
         return group;
     }
 

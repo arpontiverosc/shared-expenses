@@ -12,16 +12,15 @@ import java.util.stream.Collectors;
 public class UserMapper {
 
     public static User from(UserJpaEntity userJpaEntity) {
-        if (userJpaEntity == null) {
-            return null;
-        }
-        User user = new User();
-        user.setId(userJpaEntity.getId());
-        user.setUserName(userJpaEntity.getUserName());
-        user.setFirstName(userJpaEntity.getFirstName());
-        user.setLastName(userJpaEntity.getLastName());
-        user.setEmail(userJpaEntity.getEmail());
-        return user;
+
+        return User.builder()
+        .id(userJpaEntity.getId())
+        .userName(userJpaEntity.getUserName())
+        .firstName(userJpaEntity.getFirstName())
+        .lastName(userJpaEntity.getLastName())
+        .email(userJpaEntity.getEmail())
+        .build();
+
     }
 
 

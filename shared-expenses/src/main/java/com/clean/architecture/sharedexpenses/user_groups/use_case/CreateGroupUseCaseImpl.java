@@ -28,10 +28,10 @@ public class CreateGroupUseCaseImpl implements CreateGroupUseCase {
     }
 
     private Group createGroupFromCommand(CreateGroupCommand command) {
-        Group group = new Group();
-        group.setId(UUID.randomUUID().toString());
-        group.setGroupName(command.getGroupName());
-        return group;
+        return Group.builder()
+                .id(UUID.randomUUID().toString())
+                .groupName(command.getGroupName())
+                .build();
     }
 
     private void validateCommand(CreateGroupCommand command) {
