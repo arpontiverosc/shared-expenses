@@ -24,14 +24,14 @@ public class BalanceMapper {
     }
 
     public static Balance from(BalanceJpaEntity balanceJpaEntity) {
-        Balance balance = new Balance();
-        balance.setId(balanceJpaEntity.getId());
-        balance.setBalanceName(balanceJpaEntity.getBalanceName());
-        balance.setDescription(balanceJpaEntity.getDescription());
-        balance.setCreatedAt(balanceJpaEntity.getCreatedAt());
+        Balance.Builder builder = Balance.Builder.builder()
+                        .id(balanceJpaEntity.getId())
+                        .balanceName(balanceJpaEntity.getBalanceName())
+                        .description(balanceJpaEntity.getDescription())
+                        .createdAt(balanceJpaEntity.getCreatedAt());
         if (Objects.nonNull(balanceJpaEntity.getExpenses()) && !balanceJpaEntity.getExpenses().isEmpty()) {
-            balance.setExpenses(balanceJpaEntity.getExpenses().stream().map(ExpenseMapper::from).toList());
+            builder.expenses(balanceJpaEntity.getExpenses().stream().map(ExpenseMapper::from).toList());
         }
-        return balance;
+        return builder.build();
     }
 }

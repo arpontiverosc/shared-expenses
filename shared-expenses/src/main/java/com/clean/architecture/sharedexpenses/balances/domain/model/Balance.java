@@ -13,13 +13,49 @@ import java.util.stream.Collectors;
 public class Balance {
 
 
-    private String id;
-    private String balanceName;
-    private String description;
+    private final String id;
+    private final String balanceName;
+    private final String description;
     private Group group;
-    private OffsetDateTime createdAt;
+    private final OffsetDateTime createdAt;
     private List<Expense> expenses = new ArrayList<>();
 
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
+    private Balance(Builder builder) {
+        this.id = builder.id;
+        this.balanceName = builder.balanceName;
+        this.description = builder.description;
+        this.group = builder.group;
+        this.createdAt = builder.createdAt;
+        this.expenses = builder.expenses;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getBalanceName() {
+        return balanceName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public OffsetDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public List<Expense> getExpenses() {
+        return expenses;
+    }
 
     public void addExpense(Expense expense) {
         expenses = Optional.ofNullable(expenses).map(ArrayList::new).orElseGet(ArrayList::new);
@@ -74,17 +110,16 @@ public class Balance {
 
         return getUsersIdGroup().stream().map(userId -> {
 
-            UserPaymentSummary userPaymentSummary = new UserPaymentSummary();
-            userPaymentSummary.setUserId(userId);
-
             BigDecimal totalSpentByUser = BigDecimal.ZERO;
             if(totalSpentByUsers.containsKey(userId)) {
                 totalSpentByUser = totalSpentByUsers.get(userId);
             }
-            userPaymentSummary.setAmountPaid(totalSpentByUser);
-            userPaymentSummary.setAmountToBePaid(totalSpentByUser.subtract(amountToPayPerUser));
 
-            return userPaymentSummary;
+            return UserPaymentSummary.Builder.builder()
+                    .userId(userId)
+                    .amountPaid(totalSpentByUser)
+                    .amountToBePaid(totalSpentByUser.subtract(amountToPayPerUser)).build();
+
 
         }).toList();
 
@@ -125,10 +160,11 @@ public class Balance {
             balancesAux.put(debtor.getUserId(), debt.add(payment));
             balancesAux.put(creditor.getUserId(), credit.subtract(payment));
 
-            SettlementPayment settlementPayment = new SettlementPayment();
-            settlementPayment.setBeneficiaryId(creditor.getUserId());
-            settlementPayment.setDebtorId(debtor.getUserId());
-            settlementPayment.setAmountToPay(payment);
+            SettlementPayment settlementPayment = SettlementPayment.Builder.builder()
+                                                .beneficiaryId(creditor.getUserId())
+                                                .debtorId(debtor.getUserId())
+                                                .amountToPay(payment)
+                                                 .build();
 
             settlementPayments.add(settlementPayment);
 
@@ -147,4 +183,53 @@ public class Balance {
     }
 
 
+    public static final class Builder {
+        private String id;
+        private String balanceName;
+        private String description;
+        private Group group;
+        private OffsetDateTime createdAt;
+        private List<Expense> expenses;
+
+        private Builder() {
+        }
+
+        public static Builder builder() {
+            return new Builder();
+        }
+
+        public Builder id(String id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder balanceName(String balanceName) {
+            this.balanceName = balanceName;
+            return this;
+        }
+
+        public Builder description(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public Builder group(Group group) {
+            this.group = group;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder expenses(List<Expense> expenses) {
+            this.expenses = expenses;
+            return this;
+        }
+
+        public Balance build() {
+            return new Balance(this);
+        }
+    }
 }

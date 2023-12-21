@@ -29,12 +29,13 @@ public class CreateBalanceUseCaseImpl implements CreateBalanceUseCase {
 
 
     private Balance createBalanceFromCommand(CreateBalanceCommand command){
-        Balance balance = new Balance();
-        balance.setId(UUID.randomUUID().toString());
-        balance.setBalanceName(command.getBalanceName());
-        balance.setDescription(command.getDescription());
-        balance.setGroup(groupService.retrieveGroup(command.getGroupId()));
-        balance.setCreatedAt(OffsetDateTime.now());
-        return balance;
+        return Balance.Builder.builder()
+                            .id(UUID.randomUUID().toString())
+                            .balanceName(command.getBalanceName())
+                            .description(command.getDescription())
+                            .group(groupService.retrieveGroup(command.getGroupId()))
+                            .createdAt(OffsetDateTime.now())
+                            .build();
+
     }
 }

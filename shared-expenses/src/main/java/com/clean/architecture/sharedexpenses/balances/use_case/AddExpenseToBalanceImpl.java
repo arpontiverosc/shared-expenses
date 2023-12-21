@@ -41,16 +41,17 @@ public class AddExpenseToBalanceImpl implements AddExpenseToBalance {
 
 
     private Expense createExpenseFromCommand(AddExpenseToBalanceCommand command) {
-        Expense expense = new Expense();
-        expense.setId(UUID.randomUUID().toString());
-        expense.setBalanceId(command.getBalanceId());
-        expense.setPrice(command.getPrice());
-        expense.setDescription(command.getDescription());
-        expense.setUserId(command.getUserId());
-        expense.setGroupId(command.getGroupId());
-        expense.setCurrency(command.getCurrency());
-        expense.setPrice(command.getPrice());
-        expense.setCreatedAt(OffsetDateTime.now());
-        return expense;
+        return Expense.Builder.builder()
+                .id(UUID.randomUUID().toString())
+                .balanceId(command.getBalanceId())
+                .price(command.getPrice())
+                .description(command.getDescription())
+                .userId(command.getUserId())
+                .groupId(command.getGroupId())
+                .currency(command.getCurrency())
+                .price(command.getPrice())
+                .createdAt(OffsetDateTime.now())
+                .build();
     }
+
 }
